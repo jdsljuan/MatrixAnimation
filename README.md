@@ -1,12 +1,12 @@
 # Matrix Animation On Java 
 
-_A simple animation inspired by Matrix the movie and written in Java for the Command Line Prompt. _
+_A simple animation inspired by Matrix the movie and written in Java for the Command Line Prompt._
 
 ## Build
 
 ### Pre-Requirements
 
-_ Install Java OpenJDK 15.0.2_
+_Install Java OpenJDK 15.0.2_
 
 * On Fedora - 33
 
@@ -31,10 +31,6 @@ java -cp ./bin MatrixAnimation $COLUMNS $LINES
 
 _Other systems, replace $COLUMNS for a mutiple of two, and $LINES for a desired row number._
 
-## Author
-
-**Juan David Sanchez Leal**
-
 ## License 
 
-Free to use.
+MIT.
