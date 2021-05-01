@@ -121,19 +121,17 @@ public class MatrixAnimation{
 	 * showHelp := Shows the correct usage if it is wrong.
 	 */
 	public static void showHelp(){
-		String helpStr = """
-			----- Matrix Animation - JAVA -----
-			A simple animation inspired by Matrix The Movie.
-			For the Command Prompt of all systems with JVM.
+		String helpStr = "" +
+			"----- Matrix Animation - JAVA -----\n" +
+			"A simple animation inspired by Matrix The Movie.\n" +
+			"For the Command Prompt of all systems with JVM.\n" +
 
-			On GNU/Linux systems use env vars $COLUMNS $LINES
-				
-				Usage: 	 MatrixAnimation COLUMNS_SIZE ROWS_SIZE 
-				param: 	 COLUMNS_SIZE and ROWS_SIZE are numbers.
+			"On GNU/Linux systems use env vars $COLUMNS $LINES\n" +
 
-				Example: Matrix Animation 142 45
-			
-			""";
+				"Usage: 	 MatrixAnimation COLUMNS_SIZE ROWS_SIZE\n" +
+				"param: 	 COLUMNS_SIZE and ROWS_SIZE are numbers.\n" +
+
+				"Example: Matrix Animation 142 45\n";
 		System.out.println(helpStr);
 	}
 
