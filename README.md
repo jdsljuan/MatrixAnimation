@@ -1,4 +1,4 @@
-# Matrix Animation On Java 
+# Matrix Animation 
 
 _A simple animation inspired by Matrix the movie and written in Java for the Command Line Prompt._
 
