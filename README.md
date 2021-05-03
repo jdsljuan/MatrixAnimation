@@ -6,7 +6,7 @@ _A simple animation inspired by Matrix the movie and written in Java for the Com
 
 ### Pre-Requirements
 
-_Install Java OpenJDK 14.0.2+_
+_Install Java OpenJDK 14.0.2+ and Bash 5.0+_
 
 * On Fedora 33
 
@@ -32,7 +32,7 @@ For GNU/Linux use:
 
 ```
 cd MatrixAnimation
-java -cp ./bin MatrixAnimation $COLUMNS $LINES
+./run.sh $COLUMNS $LINES
 ```
 
 _Other systems, replace $COLUMNS for a mutiple of two, and $LINES for a desired row number._
