@@ -12,15 +12,14 @@ public class MatrixAnimation{
 	private ArrayList<String> animationArray;
 
 	/** Unicode Index */
-	private final int finalCharInt = 12538;	
-	private final int startCharInt = 12449;	
-	private final int space = 12288;
+	private final int finalCharInt = 90;
+	private final int startCharInt = 65;
+	private final int space = 32;
 
-	/** Util vars */		
-	private final int maxColumnChars = 20;	
-	private final int sleepTime = 100;
-	private final double firstPipeOnP = 0.3;
-	private final double commonPipeOnP = 0.05;
+	/** Util vars */
+	private final int maxColumnChars = 20;
+	private final int sleepTime = 50;
+	private final double commonPipeOnP = 0.0095;
 	private int columns, lines;
 	private int pipeOn[];
 
@@ -36,7 +35,7 @@ public class MatrixAnimation{
 		this.pipeOn = new int[this.columns];
 
 		for(int i = 0; i < this.columns; i++){
-			pipeOn[i] = pipeSwitch(this.firstPipeOnP);
+			pipeOn[i] = pipeSwitch(this.commonPipeOnP);
 		}
 
 		for(int i = 0;i < this.lines; i++){
@@ -66,12 +65,14 @@ public class MatrixAnimation{
 	 */
 	private void printFrame(){
 		animationArray.add(0, createNewLine());
-		animationArray.remove((animationArray.size()-1)); 
+		animationArray.remove((animationArray.size()-1));
+		String auxstr = "";
 			for(String s: animationArray){
-				if(animationArray.indexOf(s) <= this.lines){
-					System.out.println(s);
+				if(animationArray.indexOf(s) < this.lines){
+					auxstr = auxstr + s + "\n";
 				}
 		}
+		System.out.print("\033[1;32m" + auxstr + "\033[0m");
 	}
 
 	/**
@@ -100,6 +101,7 @@ public class MatrixAnimation{
 	/**
 	 * pipeSwitch := Given a probability, return a vertical line size or zero.
 	 * 				 A non-zero value will keep the pipe alive until it is zero.
+	 *				 Basic 0 with a Probability or a random number between 0 and maxColumnChars.
 	 * 
 	 * @param probability The probability of turn ON the pipe.
 	 * @return Zero if it's turn off, else the number with the posible vertical line size.
@@ -141,8 +143,7 @@ public class MatrixAnimation{
 			try{
 				int columnsArg = Integer.decode(args[0]).intValue();
 				int linesArg = Integer.decode(args[1]).intValue();
-				//@hack At the moment fill all the screen with half of columns. why? :|
-				MatrixAnimation ma = new MatrixAnimation(columnsArg/2,linesArg);
+				MatrixAnimation ma = new MatrixAnimation(columnsArg,linesArg);
 				ma.runAnimation();
 			}catch(Exception e){
 				MatrixAnimation.showHelp();
