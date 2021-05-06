@@ -19,7 +19,7 @@ public class MatrixAnimation{
 	/** Util vars */
 	private final int maxColumnChars = 20;
 	private final int sleepTime = 50;
-	private final double commonPipeOnP = 0.0095;
+	private final double commonPipeOnP = 0.0200;
 	private int columns, lines;
 	private int pipeOn[];
 
@@ -47,8 +47,8 @@ public class MatrixAnimation{
 	 * runAnimation := Principal loop animation
 	 */
 	private void runAnimation(){
-		//@todo Implement variation of the character on run.
 		while(true){
+			remakeFrame();
 			printFrame();
 			try{
 				Thread.sleep(this.sleepTime);
@@ -65,14 +65,31 @@ public class MatrixAnimation{
 	 */
 	private void printFrame(){
 		animationArray.add(0, createNewLine());
-		animationArray.remove((animationArray.size()-1));
-		String auxstr = "";
 			for(String s: animationArray){
-				if(animationArray.indexOf(s) < this.lines){
-					auxstr = auxstr + s + "\n";
+				System.out.print("\033[0;32m" + s + "\033[0m");
+			}
+		animationArray.remove((animationArray.size()-1));
+	}
+
+	/**
+	 * remakeFrame := Change all non-space characters on the Frame
+	 */
+	private void remakeFrame(){
+			int auxStr[] = new int[this.columns];
+			int indexLine = 0;
+			for(String s: animationArray){
+				int i = 0;
+				for(char chr : s.toCharArray()){
+					if(chr != ' '){
+						auxStr[i] = getRandomIntChar();
+					}else{
+						auxStr[i] = this.space;
+					}
+				i++;
 				}
-		}
-		System.out.print("\033[1;32m" + auxstr + "\033[0m");
+			animationArray.set(indexLine, new String(auxStr, 0, this.columns));
+			indexLine++;
+			}
 	}
 
 	/**
@@ -85,7 +102,7 @@ public class MatrixAnimation{
 	 */
 	private String createNewLine(){
 		int uIntRandomArray[] = new int[this.columns];
-		
+
 		for(int i = 0; i < this.columns; i++){
 			if(pipeOn[i] != 0){
 				uIntRandomArray[i] = getRandomIntChar();
@@ -138,6 +155,7 @@ public class MatrixAnimation{
 	}
 
 	//--------------<<< MAIN >>>--------------
+	//@todo Implement OS signal
 	public static void main(String[] args){
 		if(args.length == 2){
 			try{
