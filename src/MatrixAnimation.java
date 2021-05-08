@@ -48,7 +48,7 @@ public class MatrixAnimation{
 	 */
 	private void runAnimation(){
 		while(true){
-			remakeFrame();
+			nextFrame();
 			printFrame();
 			try{
 				Thread.sleep(this.sleepTime);
@@ -64,12 +64,22 @@ public class MatrixAnimation{
 	 *				 the last one too.
 	 */
 	private void printFrame(){
-		animationArray.add(0, createNewLine());
+			String aux = "";
 			for(String s: animationArray){
-				System.out.print("\033[0;32m" + s + "\033[0m");
+				aux = aux + s;	
 			}
-		animationArray.remove((animationArray.size()-1));
+			System.out.print("\033[0;32m" + aux + "\033[0m");
 	}
+
+	/**
+	 * nextFrame := Create the animation itself.
+	 */
+	private void nextFrame(){
+		animationArray.add(0, createNewLine());
+		animationArray.remove((animationArray.size()-1));
+		remakeFrame();
+	}
+
 
 	/**
 	 * remakeFrame := Change all non-space characters on the Frame
