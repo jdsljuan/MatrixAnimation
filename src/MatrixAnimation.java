@@ -19,7 +19,7 @@ public class MatrixAnimation{
 	/** Util vars */
 	private final int maxColumnChars = 20;
 	private final int sleepTime = 50;
-	private final double commonPipeOnP = 0.0200;
+	private final double commonPipeOnP = 0.0300;
 	private int columns, lines;
 	private int pipeOn[];
 
@@ -59,14 +59,14 @@ public class MatrixAnimation{
 	}
 
 	/**
-	 * printFrame := Add a new line at the top of the animation Array 
+	 * printFrame := Add a new line at the top of the animation Array
 	 *				 and print all the lines between zero and lines. Removes
 	 *				 the last one too.
 	 */
 	private void printFrame(){
 			String aux = "";
 			for(String s: animationArray){
-				aux = aux + s;	
+				aux = aux + s;
 			}
 			System.out.print("\033[0;32m" + aux + "\033[0m");
 	}
@@ -90,6 +90,7 @@ public class MatrixAnimation{
 			for(String s: animationArray){
 				int i = 0;
 				for(char chr : s.toCharArray()){
+					//@todo replace the space char for the native unicode space on the block.
 					if(chr != ' '){
 						auxStr[i] = getRandomIntChar();
 					}else{
@@ -119,7 +120,7 @@ public class MatrixAnimation{
 				pipeOn[i]--;
 			}else{
 				uIntRandomArray[i] = this.space;
-				pipeOn[i] = pipeSwitch(this.commonPipeOnP); 
+				pipeOn[i] = pipeSwitch(this.commonPipeOnP);
 			}
 		}
 		return new String(uIntRandomArray, 0, this.columns);
@@ -129,7 +130,7 @@ public class MatrixAnimation{
 	 * pipeSwitch := Given a probability, return a vertical line size or zero.
 	 * 				 A non-zero value will keep the pipe alive until it is zero.
 	 *				 Basic 0 with a Probability or a random number between 0 and maxColumnChars.
-	 * 
+	 *
 	 * @param probability The probability of turn ON the pipe.
 	 * @return Zero if it's turn off, else the number with the posible vertical line size.
 	 */
@@ -139,14 +140,14 @@ public class MatrixAnimation{
 
 	/**
 	 * getRandomIntChar := Generates a random Unicode index between characters on the same unicode block.
-	 * 
+	 *
 	 * @return A integer that represents a index of unicode charbase.
 	 */
 	private int getRandomIntChar(){
 		return this.startCharInt + (int) Math.floor(Math.random()*(this.finalCharInt - this.startCharInt));
 	}
 
-	/** 
+	/**
 	 * showHelp := Shows the correct usage if it is wrong.
 	 */
 	public static void showHelp(){
